@@ -29,7 +29,6 @@ export default [
     // <Route component={NoMatchComponent} />
     <PrivateRoute exact path="/" component={Posts}/>,
     <PrivateRoute exact path="/posts/:id" component={PostDetail}/>,
-    <PrivateRoute exact path="/users/:id" component={UserDetail}/>,
-    <PrivateRoute exact path="/me" component={UserDetail}/>
+    <PrivateRoute exact path="/users/:id" component={UserDetail}/>
 
 ]
