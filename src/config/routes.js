@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { Login } from '../components/Login';
 import { Posts, PostDetail } from '../components/Posts';
+import { UserDetail } from '../components/Users';
 import isAuthenticated from '../isAuthenticated';
 
 const Logout = () => {
@@ -27,5 +28,8 @@ export default [
     // <Route exact path="/signup" component={SignUp} />,
     // <Route component={NoMatchComponent} />
     <PrivateRoute exact path="/" component={Posts}/>,
-    <PrivateRoute exact path="/posts/:id" component={PostDetail}/>
+    <PrivateRoute exact path="/posts/:id" component={PostDetail}/>,
+    <PrivateRoute exact path="/users/:id" component={UserDetail}/>,
+    <PrivateRoute exact path="/me" component={UserDetail}/>
+
 ]

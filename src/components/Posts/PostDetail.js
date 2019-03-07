@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import loader from '../../common/loader.gif'
+import loader from '../../common/loader.gif';
+import { Link } from 'react-router-dom';
 
 const SINGLEPOST = gql`
     query SinglePost($id:ID!){
@@ -13,6 +14,7 @@ const SINGLEPOST = gql`
             tags,
             likes,
             author{
+                _id,
                 first_name,
                 last_name,
                 email,
@@ -31,7 +33,6 @@ export default class PostDetail extends Component{
     }
 
     render(){
-        console.log(this.state)
         return(
             <div className="container">
                 <div className="row">
@@ -41,7 +42,6 @@ export default class PostDetail extends Component{
                                 ({loading, data, error}) => {
                                     if(error) return <h4>{error}</h4>
                                     if(loading) return <img src={loader}/>
-                                    console.log(data)
                                     return(
                                         <React.Fragment>
                                             <h1>{data.Post.title}</h1>
@@ -52,7 +52,9 @@ export default class PostDetail extends Component{
                                             <br/>
                                             <br/>
                                             <img src={data.Post.author.profile_image} height="42" width="42"/>
-                                            <h3>{data.Post.author.first_name} {data.Post.author.last_name}</h3>
+                                            <Link to={`/users/${data.Post.author._id}`}>
+                                                <h3>{data.Post.author.first_name} {data.Post.author.last_name}</h3>
+                                            </Link>
                                             <h3>{data.Post.author.email}</h3>
                                         </React.Fragment>
                                     )

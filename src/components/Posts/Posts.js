@@ -20,14 +20,13 @@ export default class Posts extends Component{
     render(){
         return(
             <div className="container">
-                <div className="row">
                     <Query query={ALLPOSTS}>
                         {
                             ({data, error, loading}) =>{
-                                if(error) return <h4>{"Hubo un error..."}</h4>
+                                if(error) return <h4>{error}</h4>
                                 if(loading) return <img src={loader}/>
                                 const posts = data.Posts.map((post, index) => (
-                                    <div index={index}>
+                                    <div className="row" index={index}>
                                         <PostCard
                                             id={post._id}
                                             title={post.title}
@@ -44,7 +43,6 @@ export default class Posts extends Component{
                             }
                         }
                     </Query>
-                </div>
             </div>
         );
     }
